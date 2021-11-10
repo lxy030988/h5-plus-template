@@ -1,5 +1,5 @@
 # h5-plus-template
- vite2 + vue3 + vant 移动端模板
+ vite2 + vue3 + vant 移动端混合开发模板
 
 ## 基础
 
