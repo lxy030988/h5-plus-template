@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#app,
+.wrapper {
+  width: 100%;
+  height: 100%;
+
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+#app {
+  font-size: 14px;
+}
+
+:root {
+  --color: rgb(0, 38, 255);
+}
+
+/*flex布局*/
+.jc-flex-warp {
+  display: flex;
+}
+
+.jc-content-warp {
+  height: 100%;
+}
+
+.jc-flex-con {
+  flex: 1;
+}
+
+.jc-flex-con-2 {
+  flex: 2;
+}
+
+.jc-flex-con-3 {
+  flex: 3;
+}
+
+.jc-flex-con-4 {
+  flex: 4;
+}
+
+.jc-flex-vertical {
+  -webkit-box-orient: vertical;
+  flex-flow: column;
+}
+
+//字体样式
+.jc-link {
+  color: $jc-color-primary;
+}
+
+//常用样式和边距
+.jc-pl {
+  padding-left: $jc-default-dis;
+}
+
+.jc-pr {
+  padding-right: $jc-default-dis;
+}
+
+.jc-pt {
+  padding-top: $jc-default-dis;
+}
+
+.jc-pb {
+  padding-bottom: $jc-default-dis;
+}
+
+.jc-pv {
+  padding-top: $jc-default-dis;
+  padding-bottom: $jc-default-dis;
+}
+
+.jc-ph {
+  padding-left: $jc-default-dis;
+  padding-right: $jc-default-dis;
+}
+
+.jc-ml {
+  margin-left: $jc-default-dis;
+}
+
+.jc-mr {
+  margin-right: $jc-default-dis;
+}
+
+.jc-mt {
+  margin-top: $jc-default-dis;
+}
+
+.jc-mb {
+  margin-bottom: $jc-default-dis;
+}
+
+.jc-mv {
+  margin-top: $jc-default-dis;
+  margin-bottom: $jc-default-dis;
+}
+
+.jc-mh {
+  margin-left: $jc-default-dis;
+  margin-right: $jc-default-dis;
+}
+
+/*控制 display*/
+.d-n,
+[v-cloak] {
+  display: none !important;
+}
+
+.d-ib {
+  display: inline-block !important;
+}
+
+.d-b {
+  display: block !important;
+}
+
+//字体控制
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+/*清除浮动*/
+.jc-clearfix:after {
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.jc-clearfix {
+  *zoom: 1;
+}
