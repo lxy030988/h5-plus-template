@@ -1,5 +1,40 @@
 /**和原生交互的lib */
-import { platForms } from '@/libs/util'
+let platForms = {
+  ua: window.navigator.userAgent,
+  /**
+   * 判断是否是平台
+   * @param {String} type 字符串
+   * @returns {Boolean} true or false
+   */
+  is: function (type) {
+    type = type.toLowerCase()
+    return this.ua.toLowerCase().indexOf(type) >= 0
+  },
+  isMobile: function () {
+    return !!this.ua.match(/(iPhone|iPod|Android|ios)/i)
+  },
+  isIOS: function () {
+    return !!this.ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios终端
+  },
+  isIPad: function () {
+    return this.is('ipad')
+  },
+  isiPhone: function () {
+    return this.is('iPhone')
+  },
+  isAndroid: function () {
+    return this.is('android') || this.is('Linux')
+  },
+  isWindowsPhone: function () {
+    return this.is('Windows Phone')
+  },
+  isWx: function () {
+    return this.is('micromessenger')
+  },
+  isApp: function () {
+    return this.is('minivision')
+  }
+}
 
 let noop = function () {} //设置空函数
 

@@ -22,6 +22,13 @@ type RequestIdleCallbackDeadline = {
   readonly didTimeout: boolean
   timeRemaining: () => number
 }
+type TypeWebViewJavascriptBridge = {
+  init: any
+  registerHandler: any
+  callHandler: any
+  send: any
+  [key: string]: any
+}
 
 declare interface Window {
   requestIdleCallback: (
@@ -29,5 +36,6 @@ declare interface Window {
     opts?: RequestIdleCallbackOptions
   ) => RequestIdleCallbackHandle
   cancelIdleCallback: (handle: RequestIdleCallbackHandle) => void
+  WebViewJavascriptBridge?: TypeWebViewJavascriptBridge
   [key: string]: any
 }
