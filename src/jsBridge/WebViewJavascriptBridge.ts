@@ -1,8 +1,10 @@
+import { HandlerItem, HandlerTypes } from './model'
+
 //原生插件库是否加载完成
 let WebViewJavascriptBridgeReady = false
 
 //用于存储事件桥未加载完成之前的事件列表
-const handlerMap = []
+const handlerMap: HandlerItem[] = []
 
 //内部透传事件列表
 const messageCallBack = {}
@@ -22,7 +24,7 @@ export const registerHandler = (name: string, callback: Function) => {
     })
   } else {
     handlerMap.push({
-      type: 'registerHandler',
+      type: HandlerTypes.RegisterHandler,
       name,
       callback
     })
@@ -46,7 +48,7 @@ export const callHandler = (name: string, data = {}, callback?: Function) => {
     })
   } else {
     handlerMap.push({
-      type: 'callHandler',
+      type: HandlerTypes.CallHandler,
       name,
       data,
       callback
@@ -69,11 +71,17 @@ export const send = (data = {}, callback?: Function) => {
     })
   } else {
     handlerMap.push({
-      type: 'send',
+      type: HandlerTypes.Send,
       data,
       callback
     })
   }
+}
+
+const HandlerTypeToFn = {
+  [HandlerTypes.RegisterHandler]: registerHandler,
+  [HandlerTypes.CallHandler]: callHandler,
+  [HandlerTypes.Send]: send
 }
 
 /**
@@ -90,13 +98,13 @@ export const init = () => {
     }
   })
 
-  //  handlerMap.forEach(function (v) {
-  //    if (v.type == 'registerHandler') {
-  //      mvJsBridge.registerHandler(v.name, v.callback)
-  //    } else if (v.type == 'callHandler') {
-  //      mvJsBridge.callHandler(v.name, v.data, v.callback)
-  //    } else if (v.type == 'send') {
-  //      mvJsBridge.send(v.data, v.callback)
-  //    }
-  //  })
+  if (handlerMap.length) {
+    handlerMap.forEach(item => {
+      if (item.type === HandlerTypes.Send) {
+        HandlerTypeToFn[item.type](item.data, item.callback)
+      } else {
+        HandlerTypeToFn[item.type](item.name!, item.callback!)
+      }
+    })
+  }
 }
