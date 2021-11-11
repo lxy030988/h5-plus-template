@@ -9,9 +9,9 @@ export const registerPullDown = (callback: Function) => {
 }
 
 /**
- * 触发返回键回调
- * @param {Function} callback 回调函数
+ * 注册返回键回调
+ * @param callback
  */
-// mvJsBridge.registerCallBack = function (callback) {
-//   mvJsBridge.registerHandler('callBack', callback)
-// }
+export const registerCallBack = (callback: Function) => {
+  registerHandler('callBack', callback)
+}

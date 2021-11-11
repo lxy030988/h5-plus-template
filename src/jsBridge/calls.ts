@@ -1,26 +1,28 @@
+import { platForms } from './platForms'
 import { callHandler } from './WebViewJavascriptBridge'
 
 /**
  * 关闭窗口
  * @param options
  */
-export const closeWindow = (options = {}) => {
+export const closeWindow = (options: number | {}, callback?: Function) => {
   const defaultOptions = {
     step: 1
   }
 
-  // if (options) {
-  //   if (typeof options == 'object') {
-  //     Object.assign(defaultOptions, options)
-  //   } else {
-  //     defaultOptions.step = options
-  //   }
-  // }
-  callHandler('closeWindow', defaultOptions)
-  // if (platForms.isApp()) {
-  // } else {
-  //   window.history.back(defaultOptions.step)
-  // }
+  if (options) {
+    if (typeof options == 'number') {
+      defaultOptions.step = options
+    } else if (typeof options == 'object') {
+      Object.assign(defaultOptions, options)
+    }
+  }
+
+  if (platForms.isApp()) {
+    callHandler('closeWindow', defaultOptions, callback)
+  } else {
+    window.history.back()
+  }
 }
 
 /**
